@@ -6,7 +6,7 @@ InspirAda blog app was originally built as full stack MVC app with CRUD function
 
 Ruby Fullstack Version: (https://github.com/veda07/ruby-project)
 
-This is a refacture version with a React front-end and a Ruby API back-end. 
+This version is a refacture version with a React front-end and a Ruby API back-end. 
 
 InspirAda-Api repository: (https://github.com/tanivelisse/InspirAda-API)
 
