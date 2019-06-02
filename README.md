@@ -1,4 +1,6 @@
-#InspirAda
+# InspirAda
+
+***
 
 ### GA SEI Capstone Project
 
@@ -19,6 +21,8 @@ Create a digital space for users to find and share blog posts about  women in th
 InspirAda is a word play between the word "inspirada" that means inspired women in Spanish and "Ada" for Ada Lovelace who is considered one of the first computer programmers. Ada is also my biggest inspiration for this project.  
 
 ## PLANING
+
+***
 
 ### User Stories
 
@@ -49,9 +53,11 @@ InspirAda is a word play between the word "inspirada" that means inspired women 
 2. Google Auth for registration/login.
 3. Contact blogger by email.
 
-###Wireframes
+### Wireframes
 
 public/images/wireframes
 
+
+***
 
 Copy Right © TIMP 2019
