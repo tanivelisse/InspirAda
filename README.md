@@ -1,7 +1,5 @@
 # InspirAda
 
-***
-
 ### GA SEI Capstone Project
 
 InspirAda blog app was originally built as full stack MVC app with CRUD functionalities using Ruby Sinatra and SQL. This was a pair programing project. 
@@ -21,8 +19,6 @@ Create a digital space for users to find and share blog posts about  women in th
 InspirAda is a word play between the word "inspirada" that means inspired women in Spanish and "Ada" for Ada Lovelace who is considered one of the first computer programmers. Ada is also my biggest inspiration for this project.  
 
 ## PLANING
-
-***
 
 ### User Stories
 
