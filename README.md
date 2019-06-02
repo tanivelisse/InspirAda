@@ -51,7 +51,7 @@ InspirAda is a word play between the word "inspirada" that means inspired women 
 
 ### Wireframes
 
-public/images/wireframes
+/public/wireframes
 
 
 ***
