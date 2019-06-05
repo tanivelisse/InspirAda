@@ -14,6 +14,7 @@ class App extends Component {
       loggedIn: false
     }
   }
+
   masterLogin = (username, userId) => {
     console.log("master login hit")
     this.setState({
@@ -22,12 +23,19 @@ class App extends Component {
       userId: userId
     });
   }
+
+  masterLogout = () => {
+    this.setState({
+      loggedIn: false,
+    });
+  }
+
   render() {
-  //console.log(`app js loggedIn state is ${this.state.loggedIn}`);
+  console.log(`app js loggedIn state is ${this.state.loggedIn}`);
     return (
       <div className="App">
         <h1>InspirAda</h1>
-        <Homepage masterLogin={this.masterLogin}/>
+        <Homepage masterLogin={this.masterLogin} masterLogout={this.masterLogout}/>
       </div>
     );
   }

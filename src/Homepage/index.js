@@ -9,7 +9,7 @@ class HomePage extends Component {
 			<div className="App">
 		        <Register masterLogin={this.props.masterLogin}/>
 		        <Login masterLogin={this.props.masterLogin}/>
-		        <Logout/>
+		        <Logout masterLogout={this.props.masterLogout}/>
 		    </div>
 		)
 	}

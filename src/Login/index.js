@@ -17,9 +17,9 @@ class Login extends Component {
 	handleSubmit = async (e) => {
 		console.log("handleSubmit login was called");
 		let parseResponse = null;
+		e.preventDefault();
 		try {
 			console.log("handleSubmit was called");
-			e.preventDefault();
 			const logResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/users/login",{
 			method:"POST",
 			credentials: "include",
@@ -59,3 +59,5 @@ class Login extends Component {
 
 
 export default Login;
+
+
