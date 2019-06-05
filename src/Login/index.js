@@ -16,8 +16,8 @@ class Login extends Component {
 	}
 	handleSubmit = async (e) => {
 		console.log("handleSubmit login was called");
+		let parseResponse = null;
 		try {
-			let parseResponse = null;
 			console.log("handleSubmit was called");
 			e.preventDefault();
 			const logResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/users/login",{
@@ -36,6 +36,8 @@ class Login extends Component {
 		}catch(err){
 			console.log(err);
 		}
+		//STATE IS LIFTED TO APP.JS
+		this.props.masterLogin(parseResponse.user.username, parseResponse.user.id)
 	}
 	render(){
 		return(

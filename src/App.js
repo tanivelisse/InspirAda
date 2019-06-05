@@ -10,15 +10,25 @@ class App extends Component {
     super()
     this.state = {
       username: '',
+      userId: null,
       loggedIn: false
     }
   }
+  masterLogin = (username, userId) => {
+    console.log("master login hit")
+    this.setState({
+      loggedIn: true,
+      username: username,
+      userId: userId
+    });
+  }
   render() {
+  //console.log(`app js loggedIn state is ${this.state.loggedIn}`);
     return (
       <div className="App">
         <h1>InspirAda</h1>
-        <Register/>
-        <Login/>
+        <Register masterLogin={this.masterLogin}/>
+        <Login masterLogin={this.masterLogin}/>
       </div>
     );
   }

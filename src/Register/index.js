@@ -17,8 +17,8 @@ class Register extends Component {
 		});
 	}
 	handleSubmit = async (e) => {
-		try{
 		let parseResponse = null;
+		try{
 		console.log("handleSubmit was called");
 		e.preventDefault();
 		const regResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/users/register",{
@@ -37,7 +37,8 @@ class Register extends Component {
         }catch(err){
 			console.log(err);
 		}
-
+		//STATE IS LIFTED TO APP.JS
+		this.props.masterLogin(parseResponse.user.username, parseResponse.user.id)
 	}
 	render() {
 		console.log(this.state);
