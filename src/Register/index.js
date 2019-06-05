@@ -5,9 +5,9 @@ class Register extends Component {
 		super()
 		this.state = {
 			username:'',
-		      password:'',
-		      email:'',
-		      about:''
+		    password:'',
+		    email:'',
+		    about:''
 		}
 	}
 	handleChange = (e) => {
@@ -16,12 +16,28 @@ class Register extends Component {
 			[e.target.name]: e.target.value
 		})
 	}
+	handleSubmit = async (e) => {
+		let parseResponse = null;
+		console.log("handleSubmit was called");
+		e.preventDefault();
+		const regResponse = await fetch("http://localhost:9292/api/v1/users/register",{
+			method:"POST",
+			credentials: "include",
+			body: JSON.stringify(this.state),
+			headers: {
+				"Content-Type":"application/Jason"
+			}
+		});
+		parseResponse = await regResponse.json();
+        console.log(parseResponse);
+
+	}
 	render() {
 		console.log(this.state);
     return (
       <div className="Register">
         <h1>Register</h1>
-	        <form>
+	        <form onSubmit={this.handleSubmit}>
 		        email:
 		        <input type="email" name='email' onChange={this.handleChange}/><br/>
 		        username: 
