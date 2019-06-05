@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import Register from './Register';
-import Login from './Login';
+import Homepage from './Homepage'
+
 
 
 //APP.JS STATE IS USED TO RENDER REGISTER COMPONENT, LOGIN COMPONENT
@@ -27,8 +27,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>InspirAda</h1>
-        <Register masterLogin={this.masterLogin}/>
-        <Login masterLogin={this.masterLogin}/>
+        <Homepage masterLogin={this.masterLogin}/>
       </div>
     );
   }
