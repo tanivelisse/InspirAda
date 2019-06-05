@@ -17,10 +17,11 @@ class Register extends Component {
 		})
 	}
 	handleSubmit = async (e) => {
+		try{
 		let parseResponse = null;
 		console.log("handleSubmit was called");
 		e.preventDefault();
-		const regResponse = await fetch("http://localhost:9292/api/v1/users/register",{
+		const regResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/users/register",{
 			method:"POST",
 			credentials: "include",
 			body: JSON.stringify(this.state),
@@ -30,6 +31,12 @@ class Register extends Component {
 		});
 		parseResponse = await regResponse.json();
         console.log(parseResponse);
+        console.log("user object:");
+        console.log(parseResponse.user);
+
+        }catch(err){
+			console.log(err);
+		}
 
 	}
 	render() {
