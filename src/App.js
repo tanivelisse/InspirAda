@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Register from './Register';
+import Login from './Login';
 
 
 //APP.JS STATE IS USED TO RENDER REGISTER COMPONENT, LOGIN COMPONENT
@@ -17,6 +18,7 @@ class App extends Component {
       <div className="App">
         <h1>InspirAda</h1>
         <Register/>
+        <Login/>
       </div>
     );
   }

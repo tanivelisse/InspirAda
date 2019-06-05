@@ -11,10 +11,10 @@ class Register extends Component {
 		}
 	}
 	handleChange = (e) => {
-		console.log("handleChange was called");
+		//console.log("handleChange was called");
 		this.setState({
 			[e.target.name]: e.target.value
-		})
+		});
 	}
 	handleSubmit = async (e) => {
 		try{
