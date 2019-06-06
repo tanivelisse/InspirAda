@@ -4,33 +4,55 @@ class CreatePost extends Component {
 	constructor(){
 		super();
 		this.state = {
-			photoUrl:'',
-			firstName:'',
-			lastName:'',
+			photo_url:'',
+			f_name:'',
+			l_name:'',
 			category:'',
 			title:'',
 			body:''
 		}
 	}
-	handleChange =(e)=>{
+	handleChange = (e) =>{
 		console.log("create handleChange was called");
 		this.setState({
 			[e.target.name]: e.target.value
 		});
 	} 
+	handleSubmit = async(e) => {
+		e.preventDefault();
+		console.log("create handleSubmit was called");
+		let parseResponse = null;
+		try{
+			const createResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/new_post",{
+				method:"POST",
+				credentials: "include",
+				body: JSON.stringify(this.state),
+				headers: {
+					"Content-Type":"application/Jason"
+				}
+			});
+			parseResponse = await createResponse.json();
+	        console.log(parseResponse);
+	        console.log("user object:");
+	        console.log(parseResponse.post);
+	        this.props.getCreatedPost();
+		}catch(err){
+			console.log(err);
+		}
 
+	}
 	render(){
 		console.log(this.state);
 		return(
 			<div>
 				<h1>Create a Post</h1>
-				<form>
+				<form onSubmit={this.handleSubmit}>
 					Photo URL:
-					<input name="photoUrl" onChange={this.handleChange}/><br/>
+					<input name="photo_url" onChange={this.handleChange}/><br/>
 					First name:
-					<input name="firstName" onChange={this.handleChange}/><br/>
+					<input name="f_name" onChange={this.handleChange}/><br/>
 					Last name:
-					<input name="lastName" onChange={this.handleChange}/><br/>
+					<input name="l_name" onChange={this.handleChange}/><br/>
 					Category:
 					<select name="category" onChange={this.handleChange}>
 						<option>Select a category</option>
@@ -41,7 +63,8 @@ class CreatePost extends Component {
 					Title:
 					<input name="title" onChange={this.handleChange}/><br/>
 					Share your thoughts here: 
-					<textarea name="body=" onChange={this.handleChange}></textarea>
+					<textarea name="body=" onChange={this.handleChange}></textarea><br/>
+					<button>Create</button>
 				</form>
 			</div>
 		)

@@ -36,14 +36,20 @@ class HomePage extends Component {
 			console.log(err);
 		}
 	}
+	getCreatedPost = (newPost)=>{
+		this.setState({
+			posts: [...this.state.posts, newPost]
+		})
+		
+	}
 	render(){
 		return(
 			<div className="App">
 		        <Register masterLogin={this.props.masterLogin}/>
 		        <Login masterLogin={this.props.masterLogin}/>
-		        <Logout masterLogout={this.props.masterLogout}/>
-		        <CreatePost/>
+		        <CreatePost getCreatedPost={this.getCreatedPost}/>
 		        <AllPosts posts={this.state.posts}/>
+		        <Logout masterLogout={this.props.masterLogout}/>
 		    </div>
 		)
 	}

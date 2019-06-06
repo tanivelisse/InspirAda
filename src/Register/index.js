@@ -31,9 +31,9 @@ class Register extends Component {
 			}
 		});
 		parseResponse = await regResponse.json();
-        console.log(parseResponse);
-        console.log("user object:");
-        console.log(parseResponse.user);
+        //console.log(parseResponse);
+        //console.log("user object:");
+        //console.log(parseResponse.user);
 
         }catch(err){
 			console.log(err);
