@@ -37,8 +37,9 @@ class HomePage extends Component {
 		}
 	}
 	getCreatedPost = (newPost)=>{
+			console.log(...this.state.posts);
 		this.setState({
-			posts: [...this.state.posts, newPost]
+			posts: [...this.state.posts,newPost]
 		})
 		
 	}

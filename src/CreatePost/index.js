@@ -35,7 +35,7 @@ class CreatePost extends Component {
 	        console.log(parseResponse);
 	        console.log("user object:");
 	        console.log(parseResponse.post);
-	        this.props.getCreatedPost();
+	        this.props.getCreatedPost(parseResponse.post);
 		}catch(err){
 			console.log(err);
 		}
