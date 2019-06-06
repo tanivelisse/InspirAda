@@ -7,7 +7,8 @@ class Register extends Component {
 			username:'',
 		    password:'',
 		    email:'',
-		    about:''
+		    about:'',
+		    message:''
 		}
 	}
 	handleChange = (e) => {
@@ -37,8 +38,16 @@ class Register extends Component {
         }catch(err){
 			console.log(err);
 		}
-		//STATE IS LIFTED TO APP.JS
+		//IF REGISTRATION SUCCESS STATE IS LIFTED TO APP.JS
+		if(parseResponse.success){
 		this.props.masterLogin(parseResponse.user.username, parseResponse.user.id)
+		}
+		//ELSE SHOW MESSAGE
+		else if(parseResponse.success !== true){
+			this.setState({
+				message: parseResponse.message
+			});
+		}
 	}
 	render() {
 		console.log(this.state);
@@ -54,6 +63,7 @@ class Register extends Component {
 		        <input type="password" name='password'  onChange={this.handleChange}/><br/>
 		        about:
 		        <input type="text" name='about' onChange={this.handleChange}/><br/>
+		        <h1>{this.state.message}</h1>
 		        <button>Register</button>
 	        </form>
       </div>

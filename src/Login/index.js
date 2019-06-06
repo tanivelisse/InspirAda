@@ -5,7 +5,8 @@ class Login extends Component {
 		super();
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+			message:''
 		}
 	}
 	handleChange = (e) => {
@@ -36,8 +37,17 @@ class Login extends Component {
 		}catch(err){
 			console.log(err);
 		}
-		//STATE IS LIFTED TO APP.JS
-		this.props.masterLogin(parseResponse.user.username, parseResponse.user.id)
+
+		//IF LOGGED IN STATE IS LIFTED TO APP.JS
+		if(parseResponse.success){
+			this.props.masterLogin(parseResponse.user.username, parseResponse.user.id)
+		}
+		//ELSE SHOW MESSAGE
+		else if(parseResponse.success !== true){
+			this.setState({
+				message: parseResponse.message
+			});
+		}
 	}
 	render(){
 		return(
@@ -48,6 +58,7 @@ class Login extends Component {
 			        <input type="text" name='username' onChange={this.handleChange}/><br/>
 			        password:
 			        <input type="password" name='password'  onChange={this.handleChange}/><br/>
+			        <h1>{this.state.message}</h1>
 			        <button>Login</button>
 				</form>
 			</div>
