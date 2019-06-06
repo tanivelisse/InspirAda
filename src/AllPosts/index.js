@@ -5,7 +5,7 @@ const AllPosts =(props)=> {
 	const displayPosts = postsToDisplay.map((post,i)=>{
 		return(
 			<li key={i} value={post}>
-				<img src={post.photo_url}/><br/>
+				<img alt="woman in tech"src={post.photo_url}/><br/>
 				<span>{post.f_name}</span><br/>
 				<span>{post.l_name}</span><br/>
 				<span>{post.category}</span><br/>
