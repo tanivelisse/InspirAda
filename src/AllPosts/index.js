@@ -11,9 +11,10 @@ const AllPosts =(props)=> {
 				<span>{post.category}</span><br/>
 				<span>{post.title}</span><br/>
 				<span>{post.body}</span><br/>
+				<button onClick={props.viewPost.bind(null, post)}>View</button>
 			</li>
 		)
-	})
+	});
 	return(
 		<div>
 		<h1>All Posts</h1>
