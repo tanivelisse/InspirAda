@@ -2,6 +2,23 @@
   text-align: left;
   margin-left: 10px;
 }
+
+.Register {
+	background: salmon;
+}
+
+.Login {
+	background: lavender;
+}
+
 .PostShowPage {
 	background: pink;
+}
+
+.AllPosts {
+	background: lightblue;
+}
+
+.CreatePost {
+	background: yellow;
 }

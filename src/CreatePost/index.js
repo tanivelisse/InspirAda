@@ -44,7 +44,7 @@ class CreatePost extends Component {
 	render(){
 		console.log(this.state);
 		return(
-			<div>
+			<div className="CreatePost">
 				<h1>Create a Post</h1>
 				<form onSubmit={this.handleSubmit}>
 					Photo URL:
