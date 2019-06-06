@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Register from '../Register';
 import Login from '../Login';
 import Logout from '../Logout';
+import CreatePost from '../CreatePost';
 import AllPosts from '../AllPosts';
 
 class HomePage extends Component {
@@ -12,28 +13,28 @@ class HomePage extends Component {
 		}
 	}
 	componentDidMount(){
-		this.getAllPosts()
+		this.getAllPosts();
 	}
 	//GET ALL POSTS
 	getAllPosts = async()=>{
 		console.log('getAllPosts was called');
 		let parseResponse = null;
 		try{
-			const postsResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/users",{
+			const postsResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts",{
 				credentials: "include",
 				headers: {
 				"Content-Type":"application/Jason"
 				}
 			});
 			parseResponse = await postsResponse.json();
-        	console.log(parseResponse);
+        	console.log(parseResponse.posts);
 
+			this.setState({
+				posts: parseResponse.posts
+			})
 		}catch(err){
 			console.log(err);
 		}
-		this.setState({
-			posts: parseResponse
-		})
 	}
 	render(){
 		return(
@@ -41,7 +42,8 @@ class HomePage extends Component {
 		        <Register masterLogin={this.props.masterLogin}/>
 		        <Login masterLogin={this.props.masterLogin}/>
 		        <Logout masterLogout={this.props.masterLogout}/>
-		        <AllPosts/>
+		        <CreatePost/>
+		        <AllPosts posts={this.state.posts}/>
 		    </div>
 		)
 	}
