@@ -1,50 +1,33 @@
 import React, {Component} from 'react';
 
 class EditPost extends Component {
-	constructor(){
-		super();
+	
+	constructor(props){
+		super(props);
 		this.state = {
-			postToEdit: {
-				photo_url:'',
-				f_name:'',
-				l_name:'',
-				category:'',
-				title:'',
-				body:''
-			}
+			photo_url: props.post.photo_url,
+			f_name: props.post.f_name,
+			l_name:props.post.l_name,
+			category:props.post.category,
+			title:props.post.title,
+			body:props.post.body	
 		}
 	}
+
 	handleChange = (e) =>{
-		console.log("create handleChange was called");
+		console.log("edit handleChange was called");
 		this.setState({
-			...this.state.postToEdit,
 			[e.target.name]: e.target.value
 		});
 	} 
-	//handleSubmit does the edit fetch call
+	
 	handleSubmit = async(e) => {
 		e.preventDefault();
 		console.log("edit handleSubmit was called");
-		let parseResponse = null;
-		try{
-			const updateResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/edit/" + this.props.post.id ,{
-				method:"PUT",
-				credentials: "include",
-				body: JSON.stringify(this.state),
-				headers: {
-					"Content-Type":"application/Jason"
-				}
-			});
-			parseResponse = await updateResponse.json();
-	        console.log(parseResponse);
-	        console.log("user object:");
-	        console.log(parseResponse.post);
-
-		}catch(err){
-			console.log(err);
-		}
-
+		this.props.updatePost(this.props.post.id, this.state)
+		this.props.getAllPosts()
 	}
+
 	render(){
 		console.log("state in edit");
 		console.log(this.state);
@@ -54,22 +37,22 @@ class EditPost extends Component {
 				<h1>Edit Your Post</h1>
 				<form onSubmit={this.handleSubmit}>
 					Photo URL:
-					<input type="text" name="photo_url" onChange={this.handleChange} value={this.props.post.photo_url}/><br/>
+					<input type="text" name="photo_url" onChange={this.handleChange} value={this.state.photo_url}/><br/>
 					First name:
-					<input type="text" name="f_name" onChange={this.handleChange} value={this.props.post.f_name}/><br/>
+					<input type="text" name="f_name" onChange={this.handleChange} value={this.state.f_name}/><br/>
 					Last name:
-					<input type="text" name="l_name" onChange={this.handleChange} value={this.props.post.l_name}/><br/>
+					<input type="text" name="l_name" onChange={this.handleChange} value={this.state.l_name}/><br/>
 					Category:
-					<select type="text" name="category" onChange={this.handleChange} value={this.props.post.category}>
+					<select type="text" name="category" onChange={this.handleChange} value={this.state.category}>
 						<option>Select a category</option>
 						<option>Women in the History of Tech</option>
 						<option>The Women of Tech</option>
 						<option>The Future Women of Tech</option>
 					</select><br/>
 					Title:
-					<input type="text" name="title" onChange={this.handleChange} value={this.props.post.title}/><br/>
+					<input type="text" name="title" onChange={this.handleChange} value={this.state.title}/><br/>
 					Share your thoughts here: 
-					<textarea type="text" name="body" onChange={this.handleChange} value={this.props.post.body}></textarea><br/>
+					<textarea type="text" name="body" onChange={this.handleChange} value={this.state.body}></textarea><br/>
 					<button>Update</button>
 				</form>
 			</div>
