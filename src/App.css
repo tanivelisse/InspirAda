@@ -3,22 +3,71 @@
   margin-left: 10px;
 }
 
+ul {
+	display: flex;
+	flex-direction: column;
+}
+
+li {
+	list-style: none;
+	background:rgba(190,229,153,.8);
+	/*display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-content: space-around;*/
+}
+
+.AllPostsImageBox{
+	display: inline-block;
+	width: 200px;
+	overflow: hidden;
+
+}
+
+.AllPostsDetailsBox {
+	display: inline-block;
+	width: 200px;
+}
+
+
+.Collapsible {
+	background: purple;
+	font-size: 24pt;
+	color: white;
+}
+
 .Register {
-	background: salmon;
+	background: lavender;
 }
 
 .Login {
 	background: lavender;
 }
 
-.PostShowPage {
-	background: pink;
+.CreatePost {
+	background: yellow;
 }
 
 .AllPosts {
 	background: lightblue;
 }
 
-.CreatePost {
-	background: yellow;
+.viewButton {
+	display: flex;
+	align-self: right;
 }
+
+.PostShowPage {
+	background: pink;
+}
+
+.EditPost {
+	background: gray;
+}
+
+.Logout {
+	background: pink;
+	position: static;
+}
+
+

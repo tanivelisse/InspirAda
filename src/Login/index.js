@@ -20,7 +20,6 @@ class Login extends Component {
 		let parseResponse = null;
 		e.preventDefault();
 		try {
-			console.log("handleSubmit was called");
 			const logResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/users/login",{
 			method:"POST",
 			credentials: "include",
@@ -30,9 +29,9 @@ class Login extends Component {
 			}
 		});
 		parseResponse = await logResponse.json();
-        console.log(parseResponse);
-        console.log("user object:");
-        console.log(parseResponse.user);
+        // console.log(parseResponse);
+        // console.log("user object:");
+        // console.log(parseResponse.user);
 
 		}catch(err){
 			console.log(err);

@@ -32,9 +32,9 @@ class CreatePost extends Component {
 				}
 			});
 			parseResponse = await createResponse.json();
-	        console.log(parseResponse);
-	        console.log("user object:");
-	        console.log(parseResponse.post);
+	        // console.log(parseResponse);
+	        // console.log("user object:");
+	        // console.log(parseResponse.post);
 	        this.props.getCreatedPost(parseResponse.post);
 		}catch(err){
 			console.log(err);
@@ -42,7 +42,7 @@ class CreatePost extends Component {
 
 	}
 	render(){
-		console.log(this.state);
+		//console.log(this.state);
 		return(
 			<div className="CreatePost">
 				<h1>Create a Post</h1>
@@ -56,7 +56,7 @@ class CreatePost extends Component {
 					Category:
 					<select name="category" onChange={this.handleChange}>
 						<option>Select a category</option>
-						<option>The Mamas of Tech</option>
+						<option>Women in the History of Techi</option>
 						<option>The Women of Tech</option>
 						<option>The Future Women of Tech</option>
 					</select><br/>
