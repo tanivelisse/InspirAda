@@ -8,8 +8,9 @@ const Comments = (props) => {
 					<li key={i} value={comment}>
 					
 						<span>{comment.body}</span><br/>
-				
+					<button onClick={props.delete.bind(null, comment.id)}>Delete</button>
 					</li><br/>
+
 				</div>
 		)
 	});

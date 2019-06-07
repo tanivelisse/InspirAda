@@ -164,6 +164,29 @@ class HomePage extends Component {
 		})
 		
 	}
+
+	//DELETE COMMENT
+	//still need to build button in comments component
+	deleteComment = async(commentId, e)=>{
+		console.log("deleteComment was called");
+		e.preventDefault();
+		try {
+			const deleteCommentResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentId, {
+				method:"DELETE",
+				credentials:"include"
+			});
+			await deleteCommentResponse.json();
+  			this.setState({
+  				comments: this.state.comments.filter((comment)=> comment.id !== commentId)
+  			})
+		}catch(err){
+			console.log(err);
+		}
+		this.setState({
+			postToShow: null
+		})
+	}
+	
 	
 	render(){
 		console.log("Homepage comments state:")
@@ -238,7 +261,7 @@ class HomePage extends Component {
 			        	delete={this.deletePost}
 			        	viewAllPosts={this.viewAllPosts}
 		        	/> 
-		        	<Comments comments={this.state.comments}/>
+		        	<Comments comments={this.state.comments} delete={this.deleteComment}/>
 		        	<CreateComment post={this.state.posts[this.state.postToShowIndex]} getCreatedComment={this.getCreatedComment} />
 		        	</div>
 		        }
