@@ -7,15 +7,18 @@ import CreatePost from '../CreatePost';
 import AllPosts from '../AllPosts';
 import PostShowPage from "../PostShowPage";
 import EditPost from '../EditPost';
+import Comments from '../Comments';
+import CreateComment from "../CreateComment";
 
 class HomePage extends Component {
 	constructor(){
 		super()
 		this.state = {
 			posts: [],
-			postToShow: null,
+			postToShowIndex: null,
 			ShowPage: false,
 			postToEdit:null,
+			comments:[]
 		}
 	}
 
@@ -25,13 +28,14 @@ class HomePage extends Component {
 
 	viewPost = (postIndex) => {
 		this.setState({
-			postToShow: postIndex,
+			postToShowIndex: postIndex,
 		})
+		this.getComments(this.state.posts[postIndex])
 	}
 
 	viewAllPosts = () => {
 		this.setState({
-			postToShow: null,
+			postToShowIndex: null,
 		})
 	}
 
@@ -62,6 +66,7 @@ class HomePage extends Component {
 			console.log(err);
 		}
 	}
+
 	getCreatedPost = (newPost)=>{
 		console.log(...this.state.posts);
 		this.setState({
@@ -69,7 +74,6 @@ class HomePage extends Component {
 		})
 		
 	}
-
 
 	updatePost = async (id, data) => {
 
@@ -106,7 +110,6 @@ class HomePage extends Component {
 
 	}
 
-
 	deletePost = async(postId, e) =>{
 		console.log("deletePost was called");
 		e.preventDefault();
@@ -126,10 +129,45 @@ class HomePage extends Component {
 			postToShow: null
 		})
 	}
+
+	//GET ALL COMMENTS FOR POST TO SHOW
+
+	getComments = async(post)=>{
+		console.log("getComments was called");
+		console.log('post.id');
+		console.log(post.id);
+		try{
+			const commentsResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + post.id,{
+				credentials: "include",
+				headers: {
+					"Content-Type":"application/Jason"
+				}
+			});
+			let parseResponse = await commentsResponse.json()
+
+			this.setState({
+				comments: parseResponse.comments
+			})
+
+
+		}catch(err){
+			console.log(err);
+		}
+
+	}
+
+	//GET CREATED COMMENT FROM CREATECOMMENT COMPONENT
+	getCreatedComment = (newComment)=>{
+		//console.log(...this.state.comments);
+		this.setState({
+			comments: [...this.state.comments, newComment]
+		})
+		
+	}
 	
 	render(){
-		console.log("Homepage state:")
-		console.log(this.state);
+		console.log("Homepage comments state:")
+		console.log(this.state.comments);
 		return(
 			<div className="App">
 				
@@ -181,7 +219,7 @@ class HomePage extends Component {
 		        <br/>
 
 		        {
-		        	this.state.postToShow === null 
+		        	this.state.postToShowIndex === null 
 		        	? 
 		        	<AllPosts viewPost={this.viewPost} posts={this.state.posts}/> 
 		        	: 
@@ -189,16 +227,20 @@ class HomePage extends Component {
 		    	} 
 		        
 		        {
-		        	this.state.postToShow === null 
+		        	this.state.postToShowIndex === null 
 		        	? 
 		        	null 
-		        	: 
+		        	:
+		        	<div> 
 		        	<PostShowPage 
-			        	post={this.state.posts[this.state.postToShow]} 
+			        	post={this.state.posts[this.state.postToShowIndex]} 
 			        	getPostToEdit={this.getPostToEdit} 
 			        	delete={this.deletePost}
 			        	viewAllPosts={this.viewAllPosts}
 		        	/> 
+		        	<Comments comments={this.state.comments}/>
+		        	<CreateComment post={this.state.posts[this.state.postToShowIndex]} getCreatedComment={this.getCreatedComment} />
+		        	</div>
 		        }
 
 		        {

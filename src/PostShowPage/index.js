@@ -1,7 +1,6 @@
 import React from 'react';
 
 const PostShowPage =(props)=>{
-
 		return(
 			<div className="PostShowPage">
 			<button onClick={props.viewAllPosts}>Back to menu</button>
