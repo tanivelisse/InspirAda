@@ -27,7 +27,8 @@ class HomePage extends Component {
 			ShowPage: false,
 			postToEdit:null,
 			comments:[],
-			message:''
+			postMessage:'',
+			commentMessage:''
 		}
 	}
 
@@ -49,6 +50,7 @@ class HomePage extends Component {
 	}
 
 	getPostToEdit = (post) => {
+		console.log("getPostToEdit was called");
 		//if post belongs to logged in user,
 		//then set state to open edit "modal"
 		if(this.props.userId === post.user_id){
@@ -59,7 +61,7 @@ class HomePage extends Component {
 		//otherwise, send user a message
 		else {
 			this.setState({
-				message:"Unable to Edit Post"
+				postMessage:"Unable to Edit Post"
 			})
 		}
 	}
@@ -151,7 +153,7 @@ class HomePage extends Component {
 		}
 		else {
 			this.setState({
-				message:"Unable to Delete Post"
+				postMessage:"Unable to Delete Post"
 			});
 		}
 	}
@@ -194,19 +196,20 @@ class HomePage extends Component {
 
 	//DELETE COMMENT
 	
-	deleteComment = async(commentId, e)=>{
+	deleteComment = async(commentToDelete, e)=>{
 		console.log("deleteComment was called");
 		e.preventDefault();
 
-		
+		if(this.props.username === commentToDelete.user_id){
+
 			try {
-				const deleteCommentResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentId, {
+				const deleteCommentResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentToDelete.id, {
 					method:"DELETE",
 					credentials:"include"
 				});
 				await deleteCommentResponse.json();
 	  			this.setState({
-	  				comments: this.state.comments.filter((comment)=> comment.id !== commentId)
+	  				comments: this.state.comments.filter((comment)=> comment.id !== commentToDelete.id)
 	  			})
 			}catch(err){
 				console.log(err);
@@ -214,6 +217,12 @@ class HomePage extends Component {
 			this.setState({
 				postToShow: null
 			})
+		}
+		else{
+			this.setState({
+				commentMessage:"Unable to Delete Comment"
+			});
+		}
 
 	}
 	
@@ -229,8 +238,12 @@ class HomePage extends Component {
 		        	? 
 		        	null 
 		        	: 
-		        	<Collapsible trigger="Register">
-		        	<Register masterLogin={this.props.masterLogin}/>
+		        	<Collapsible 
+		        	trigger="Register"
+		        	>
+		        	<Register 
+		        		masterLogin={this.props.masterLogin}
+		        	/>
 		        	</Collapsible>
 		        }
 
@@ -242,8 +255,12 @@ class HomePage extends Component {
 		        	? 
 		        	null 
 		        	: 
-		        	<Collapsible trigger="Login">
-		        	<Login masterLogin={this.props.masterLogin}/>
+		        	<Collapsible 
+		        		trigger="Login"
+		        	>
+		        	<Login 
+		        		masterLogin={this.props.masterLogin}
+		        	/>
 		        	</Collapsible>
 		        }
 
@@ -254,7 +271,9 @@ class HomePage extends Component {
 		        	? 
 		        	null 
 		        	: 
-		        	<Logout masterLogout={this.props.masterLogout}/>
+		        	<Logout 
+		        		masterLogout={this.props.masterLogout}
+		        	/>
 		    	}
 
 		    	<br/>
@@ -264,8 +283,13 @@ class HomePage extends Component {
 		        	? 
 		        	null 
 		        	:
-		        	<Collapsible trigger="Click to Create a Post" triggerWhenOpen="Click Again to Close">
-		        	<CreatePost getCreatedPost={this.getCreatedPost}/>
+		        	<Collapsible 
+		        		trigger="Click to Create a Post" 
+		        		triggerWhenOpen="Click Again to Close"
+		        	>
+		        	<CreatePost 
+		        		getCreatedPost={this.getCreatedPost}
+		        	/>
 		        	</Collapsible>
 		        }
 
@@ -274,7 +298,10 @@ class HomePage extends Component {
 		        {
 		        	this.state.postToShowIndex === null 
 		        	? 
-		        	<AllPosts viewPost={this.viewPost} posts={this.state.posts}/> 
+		        	<AllPosts 
+		        		viewPost={this.viewPost} 
+		        		posts={this.state.posts}
+		        	/> 
 		        	: 
 		        	null 
 		    	} 
@@ -287,13 +314,19 @@ class HomePage extends Component {
 		        	<div> 
 		        	<PostShowPage 
 			        	post={this.state.posts[this.state.postToShowIndex]} 
-			        	message={this.state.message}
+			        	postMessage={this.state.postMessage}
 			        	getPostToEdit={this.getPostToEdit} 
 			        	delete={this.deletePost}
 			        	viewAllPosts={this.viewAllPosts}
 		        	/> 
-		        	<Comments comments={this.state.comments} delete={this.deleteComment}/>
-		        	<CreateComment post={this.state.posts[this.state.postToShowIndex]} getCreatedComment={this.getCreatedComment} />
+		        	<Comments comments={this.state.comments} 
+		        		delete={this.deleteComment}
+		        		commentMessage={this.state.commentMessage}
+		        	/>
+		        	<CreateComment 
+		        		post={this.state.posts[this.state.postToShowIndex]}
+		        		getCreatedComment={this.getCreatedComment} 
+		        	/>
 		        	</div>
 		        }
 
