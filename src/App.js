@@ -35,7 +35,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>InspirAda</h1>
-        <Homepage loggedIn={this.state.loggedIn}masterLogin={this.masterLogin} masterLogout={this.masterLogout}/>
+        <Homepage loggedIn={this.state.loggedIn} 
+        username={this.state.username} 
+        userId={this.state.userId}
+        masterLogin={this.masterLogin} 
+        masterLogout={this.masterLogout}/>
       </div>
     );
   }

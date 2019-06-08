@@ -56,14 +56,14 @@ class CreatePost extends Component {
 					Category:
 					<select name="category" onChange={this.handleChange}>
 						<option>Select a category</option>
-						<option>Women in the History of Techi</option>
+						<option>Women in the History of Tech</option>
 						<option>The Women of Tech</option>
 						<option>The Future Women of Tech</option>
 					</select><br/>
 					Title:
 					<input name="title" onChange={this.handleChange}/><br/>
 					Share your thoughts here: 
-					<textarea name="body=" onChange={this.handleChange}></textarea><br/>
+					<textarea name="body" onChange={this.handleChange}></textarea><br/>
 					<button>Create</button>
 				</form>
 			</div>

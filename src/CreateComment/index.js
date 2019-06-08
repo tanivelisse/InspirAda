@@ -4,7 +4,7 @@ class CreateComment extends Component {
 	constructor(){
 		super();
 		this.state= {
-			body:''
+			body:" "
 		}
 	}
 	handleChange = (e) => {
@@ -32,7 +32,7 @@ class CreateComment extends Component {
 
 	        this.props.getCreatedComment(parseResponse.comment);
 	        this.setState({
-	        	body:null
+	        	body:" "
 	        })
 
 		}catch(err){
@@ -48,7 +48,7 @@ class CreateComment extends Component {
 			<div>
 				<form onSubmit={this.handleSubmit}>
 					Add Comment:
-					<br/><textarea name="body" onChange={this.handleChange}></textarea>
+					<br/><textarea name="body" onChange={this.handleChange} value={this.state.body}></textarea>
 					<button>add</button>
 				</form>
 			</div>

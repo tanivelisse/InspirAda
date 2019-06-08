@@ -12,7 +12,8 @@ const PostShowPage =(props)=>{
 				<span>{props.post.title}</span><br/>
 				<span>{props.post.body}</span><br/>
 				<button onClick={props.getPostToEdit.bind(null, props.post)}>Edit</button>
-				<button onClick={props.delete.bind(null, props.post.id)}>Delete</button>
+				<button onClick={props.delete.bind(null, props.post)}>Delete</button><br/>
+				{props.message}
 			</div>	
 		)
 	

@@ -10,6 +10,14 @@ import EditPost from '../EditPost';
 import Comments from '../Comments';
 import CreateComment from "../CreateComment";
 
+// PENDING ABOUT COMPONENT
+// PENDING CONTACT COMPONENT
+// PENDING SEARCH BAR
+// PENDING FILTER OPTIONS comming soon on a streach
+// PENDING USER PROFILE COMPONENT
+// MAKE CREATE COLLAPSE
+// ADJUST PICTURE SIZE IN SHOW PAGE
+
 class HomePage extends Component {
 	constructor(){
 		super()
@@ -18,7 +26,8 @@ class HomePage extends Component {
 			postToShowIndex: null,
 			ShowPage: false,
 			postToEdit:null,
-			comments:[]
+			comments:[],
+			message:''
 		}
 	}
 
@@ -40,9 +49,19 @@ class HomePage extends Component {
 	}
 
 	getPostToEdit = (post) => {
-		this.setState({
-			postToEdit: post
-		})
+		//if post belongs to logged in user,
+		//then set state to open edit "modal"
+		if(this.props.userId === post.user_id){
+			this.setState({
+				postToEdit: post
+			})
+		} 
+		//otherwise, send user a message
+		else {
+			this.setState({
+				message:"Unable to Edit Post"
+			})
+		}
 	}
 
 	//GET ALL POSTS
@@ -68,7 +87,7 @@ class HomePage extends Component {
 	}
 
 	getCreatedPost = (newPost)=>{
-		console.log(...this.state.posts);
+		//console.log(...this.state.posts);
 		this.setState({
 			posts: [...this.state.posts,newPost]
 		})
@@ -110,24 +129,31 @@ class HomePage extends Component {
 
 	}
 
-	deletePost = async(postId, e) =>{
+	deletePost = async(postToDelete, e) =>{
 		console.log("deletePost was called");
 		e.preventDefault();
-		try {
-			const deleteResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/" + postId, {
-				method:"DELETE",
-				credentials:"include"
-			});
-			await deleteResponse.json();
-  			this.setState({
-  				posts: this.state.posts.filter((post)=> post.id !== postId)
-  			})
-		}catch(err){
-			console.log(err);
+		if(this.props.userId === postToDelete.user_id){
+			try {
+				const deleteResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/" + postToDelete.id, {
+					method:"DELETE",
+					credentials:"include"
+				});
+				await deleteResponse.json();
+	  			this.setState({
+	  				posts: this.state.posts.filter((post)=> post.id !== postToDelete.id)
+	  			})
+			}catch(err){
+				console.log(err);
+			}
+			this.setState({
+				postToShow: null
+			})
 		}
-		this.setState({
-			postToShow: null
-		})
+		else {
+			this.setState({
+				message:"Unable to Delete Post"
+			});
+		}
 	}
 
 	//GET ALL COMMENTS FOR POST TO SHOW
@@ -157,6 +183,7 @@ class HomePage extends Component {
 	}
 
 	//GET CREATED COMMENT FROM CREATECOMMENT COMPONENT
+
 	getCreatedComment = (newComment)=>{
 		//console.log(...this.state.comments);
 		this.setState({
@@ -166,25 +193,28 @@ class HomePage extends Component {
 	}
 
 	//DELETE COMMENT
-	//still need to build button in comments component
+	
 	deleteComment = async(commentId, e)=>{
 		console.log("deleteComment was called");
 		e.preventDefault();
-		try {
-			const deleteCommentResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentId, {
-				method:"DELETE",
-				credentials:"include"
-			});
-			await deleteCommentResponse.json();
-  			this.setState({
-  				comments: this.state.comments.filter((comment)=> comment.id !== commentId)
-  			})
-		}catch(err){
-			console.log(err);
-		}
-		this.setState({
-			postToShow: null
-		})
+
+		
+			try {
+				const deleteCommentResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentId, {
+					method:"DELETE",
+					credentials:"include"
+				});
+				await deleteCommentResponse.json();
+	  			this.setState({
+	  				comments: this.state.comments.filter((comment)=> comment.id !== commentId)
+	  			})
+			}catch(err){
+				console.log(err);
+			}
+			this.setState({
+				postToShow: null
+			})
+
 	}
 	
 	
@@ -234,7 +264,7 @@ class HomePage extends Component {
 		        	? 
 		        	null 
 		        	:
-		        	<Collapsible trigger="Create a Post">
+		        	<Collapsible trigger="Click to Create a Post" triggerWhenOpen="Click Again to Close">
 		        	<CreatePost getCreatedPost={this.getCreatedPost}/>
 		        	</Collapsible>
 		        }
@@ -257,6 +287,7 @@ class HomePage extends Component {
 		        	<div> 
 		        	<PostShowPage 
 			        	post={this.state.posts[this.state.postToShowIndex]} 
+			        	message={this.state.message}
 			        	getPostToEdit={this.getPostToEdit} 
 			        	delete={this.deletePost}
 			        	viewAllPosts={this.viewAllPosts}
