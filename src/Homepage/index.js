@@ -15,7 +15,6 @@ import CreateComment from "../CreateComment";
 // PENDING SEARCH BAR
 // PENDING FILTER OPTIONS comming soon on a streach
 // PENDING USER PROFILE COMPONENT
-// MAKE CREATE COLLAPSE
 // ADJUST PICTURE SIZE IN SHOW PAGE
 
 class HomePage extends Component {
@@ -231,7 +230,8 @@ class HomePage extends Component {
 		console.log("Homepage comments state:")
 		console.log(this.state.comments);
 		return(
-			<div className="App">
+			<div className="Homepage">
+				<h1 onClick={this.viewAllPosts}>InspirAda</h1>
 				
 		        {
 		        	this.props.loggedIn === true 

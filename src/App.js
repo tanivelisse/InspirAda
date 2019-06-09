@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import Homepage from './Homepage'
+import Homepage from './Homepage';
+
 
 
 
@@ -34,7 +35,6 @@ class App extends Component {
   console.log(`app js loggedIn state is ${this.state.loggedIn}`);
     return (
       <div className="App">
-        <h1>InspirAda</h1>
         <Homepage loggedIn={this.state.loggedIn} 
         username={this.state.username} 
         userId={this.state.userId}

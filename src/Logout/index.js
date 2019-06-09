@@ -24,9 +24,9 @@ class Logout extends Component {
 	render() {
 		return(
 			<div className="Logout">
-				<form onSubmit={this.handleSubmit}>
-					<br/><button id="logoutButton">Logout</button>
-				</form>
+				
+					<br/><h1 onClick={this.handleSubmit} id="logoutButton">Logout</h1>
+				
 			</div>
 		)
 	}

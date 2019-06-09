@@ -11,7 +11,7 @@ const Comments = (props) => {
 					
 						<span>{comment.body}</span><br/>
 						<span>Comment by:{comment.user_username}</span><br/>
-						<button onClick={props.delete.bind(null, comment)}>Delete</button>
+						<button onClick={props.delete.bind(null, comment)}>Delete</button><br/>
 						{props.commentMessage}
 					</li><br/>
 

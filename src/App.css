@@ -11,10 +11,6 @@ ul {
 li {
 	list-style: none;
 	background:rgba(190,229,153,.8);
-	/*display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-content: space-around;*/
 }
 
 .AllPostsImageBox{
@@ -26,7 +22,7 @@ li {
 
 .AllPostsDetailsBox {
 	display: inline-block;
-	width: 200px;
+	width: 400px;
 }
 
 
@@ -45,11 +41,12 @@ li {
 }
 
 .CreatePost {
-	background: yellow;
+	background: pink;
 }
 
 .AllPosts {
 	background: lightblue;
+	position: fixed;
 }
 
 .viewButton {

@@ -10,11 +10,9 @@ const AllPosts =(props)=> {
 					<img alt="woman in tech"src={post.photo_url} height="200px"/><br/>
 					</div>
 					<div className="AllPostsDetailsBox">
-					<span>{post.f_name}</span><br/>
-					<span>{post.l_name}</span><br/>
-					<span>{post.category}</span><br/>
-					<span>{post.title}</span><br/>
-					<span>{post.body}</span><br/>
+					<h2>{post.f_name} {post.l_name}</h2>
+					<span>Post Category: {post.category}</span><br/>
+					<span>Post Title: {post.title}</span><br/>
 					</div>
 					<button className="viewButton" onClick={props.viewPost.bind(null, i)}>View</button><br/>
 				</li><br/>
