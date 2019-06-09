@@ -18,35 +18,41 @@ class Register extends Component {
 		});
 	}
 	handleSubmit = async (e) => {
-		let parseResponse = null;
-		try{
 		console.log("handleSubmit was called");
 		e.preventDefault();
-		const regResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/users/register",{
-			method:"POST",
-			credentials: "include",
-			body: JSON.stringify(this.state),
-			headers: {
-				"Content-Type":"application/Jason"
-			}
-		});
-		parseResponse = await regResponse.json();
-        //console.log(parseResponse);
-        //console.log("user object:");
-        //console.log(parseResponse.user);
-
-        }catch(err){
-			console.log(err);
-		}
-		//IF REGISTRATION SUCCESS STATE IS LIFTED TO APP.JS
-		if(parseResponse.success){
-		this.props.masterLogin(parseResponse.user.username, parseResponse.user.id)
-		}
-		//ELSE SHOW MESSAGE
-		else if(parseResponse.success !== true){
-			this.setState({
-				message: parseResponse.message
+		let parseResponse = null;
+		if(this.state.username !== '' && this.state.password !== ''){
+			try{
+			const regResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/users/register",{
+				method:"POST",
+				credentials: "include",
+				body: JSON.stringify(this.state),
+				headers: {
+					"Content-Type":"application/Jason"
+				}
 			});
+			parseResponse = await regResponse.json();
+	        //console.log(parseResponse);
+	        //console.log("user object:");
+	        //console.log(parseResponse.user);
+
+	        }catch(err){
+				console.log(err);
+			}
+			//IF REGISTRATION SUCCESS STATE IS LIFTED TO APP.JS
+			if(parseResponse.success){
+			this.props.masterLogin(parseResponse.user.username, parseResponse.user.id)
+			}
+			//ELSE SHOW MESSAGE
+			else if(parseResponse.success !== true){
+				this.setState({
+					message: parseResponse.message
+				});
+			}
+		}else{
+			this.setState({
+				message: "Please fill out all boxes"
+			})
 		}
 	}
 	render() {
@@ -55,14 +61,34 @@ class Register extends Component {
       <div className="Register">
 	        <form onSubmit={this.handleSubmit}><br/>
 		        email:
-		        <br/><input className="log-reg-input" type="email" name='email' onChange={this.handleChange}/><br/>
+		        <br/>
+		        <input 
+		        	className="log-reg-input" 
+		        	type="email" name='email' 
+		        	onChange={this.handleChange}/>
+		        <br/>
 		        username: 
-		        <br/><input className="log-reg-input" type="text" name='username' onChange={this.handleChange}/><br/>
+		        <br/>
+		        <input 
+			        className="log-reg-input" 
+			        type="text" name='username' 
+			        onChange={this.handleChange}/>
+		        <br/>
 		        password:
-		        <br/><input className="log-reg-input" type="password" name='password'  onChange={this.handleChange}/><br/>
+		        <br/>
+		        <input 
+		        	className="log-reg-input" 
+		        	type="password" name='password'  
+		        	onChange={this.handleChange}/>
+		        <br/>
 		        about:
-		        <br/><input className="log-reg-textarea" type="text" name='about' onChange={this.handleChange}/><br/>
-		        <h1>{this.state.message}</h1>
+		        <br/>
+		        <input 
+		        	className="log-reg-textarea" 
+		        	type="text" name='about' 
+		        	onChange={this.handleChange}/>
+		        <br/>
+		        <h4>{this.state.message}</h4>
 		        <button>Register</button>
 	        </form>
       </div>
