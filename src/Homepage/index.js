@@ -215,7 +215,7 @@ class HomePage extends Component {
 		console.log("deleteComment was called");
 		e.preventDefault();
 
-		if(this.props.username === commentToDelete.user_id){
+		if(this.props.userId === commentToDelete.user_id){
 
 			try {
 				const deleteCommentResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentToDelete.id, {
