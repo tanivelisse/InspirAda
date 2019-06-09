@@ -53,7 +53,6 @@ class Register extends Component {
 		//console.log(this.state);
     return (
       <div className="Register">
-        <h1>Register</h1>
 	        <form onSubmit={this.handleSubmit}>
 		        email:
 		        <input type="email" name='email' onChange={this.handleChange}/><br/>

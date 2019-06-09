@@ -10,35 +10,41 @@ class CreateComment extends Component {
 	handleChange = (e) => {
 		console.log("Comment Create handleChange called");
 		this.setState({
-			body: e.target.value
+			body: e.target.value,
+			message:''
 		})
 	}
 	handleSubmit = async(e) => {
 		 console.log("Comment Create handleSubmit called");
 		e.preventDefault();
-		
-		try{
-			const createResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/new_comment/" + this.props.post.id,{
-				method:"POST",
-				credentials: "include",
-				body: JSON.stringify(this.state),
-				headers: {
-					"Content-Type":"application/Jason"
-				}
-			});
-			let parseResponse = await createResponse.json();
 
-	        console.log(parseResponse);
+		if(this.props.loggedIn) {
+			try{
+				const createResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/new_comment/" + this.props.post.id,{
+					method:"POST",
+					credentials: "include",
+					body: JSON.stringify(this.state),
+					headers: {
+						"Content-Type":"application/Jason"
+					}
+				});
+				let parseResponse = await createResponse.json();
 
-	        this.props.getCreatedComment(parseResponse.comment);
-	        this.setState({
-	        	body:" "
-	        })
+		        console.log(parseResponse);
 
-		}catch(err){
-			console.log(err);
+		        this.props.getCreatedComment(parseResponse.comment);
+		        this.setState({
+		        	body:" "
+		        })
+
+			}catch(err){
+				console.log(err);
+			}
+		} else {
+			this.setState({
+				message:"Unable to Add Comment"
+			})
 		}
-
 	}
 
 	render(){
@@ -50,6 +56,7 @@ class CreateComment extends Component {
 					Add Comment:
 					<br/><textarea name="body" onChange={this.handleChange} value={this.state.body}></textarea>
 					<button>add</button>
+					{this.state.message}
 				</form>
 			</div>
 		)

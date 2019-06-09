@@ -61,9 +61,9 @@ li {
 	background: gray;
 }
 
-.Logout {
-	background: pink;
-	position: static;
+#Logout {
+	background: white;
+	
 }
 
 

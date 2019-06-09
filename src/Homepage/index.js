@@ -13,7 +13,6 @@ import UserProfile from "../UserProfile";
 
 // PENDING ABOUT COMPONENT
 // PENDING CONTACT COMPONENT
-// PENDING USER PROFILE COMPONENT
 // ADJUST PICTURE SIZE IN SHOW PAGE & All Posts with CSS
 
 
@@ -179,24 +178,25 @@ class HomePage extends Component {
 		console.log("getComments was called");
 		console.log('post.id');
 		console.log(post.id);
-		try{
-			const commentsResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + post.id,{
-				credentials: "include",
-				headers: {
-					"Content-Type":"application/Jason"
-				}
-			});
-			let parseResponse = await commentsResponse.json()
+		
+			try{
+				const commentsResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + post.id,{
+					credentials: "include",
+					headers: {
+						"Content-Type":"application/Jason"
+					}
+				});
+				let parseResponse = await commentsResponse.json()
 
-			this.setState({
-				comments: parseResponse.comments
-			})
+				this.setState({
+					comments: parseResponse.comments
+				})
 
 
-		}catch(err){
-			console.log(err);
-		}
-
+			}catch(err){
+				console.log(err);
+			}
+		
 	}
 
 	//GET CREATED COMMENT FROM CREATECOMMENT COMPONENT
@@ -247,8 +247,28 @@ class HomePage extends Component {
 		console.log(this.state.comments);
 		return(
 			<div className="Homepage">
-				<h1 onClick={this.viewAllPosts}>InspirAda</h1>
-				<h1 onClick={this.viewProfile}>User Profile</h1>
+				<div className="nav-link">
+					<h1 onClick={this.viewAllPosts}>InspirAda</h1>
+				</div>
+				{
+					this.props.loggedIn === true
+					?
+					<div className="nav-link">
+						<h1 onClick={this.viewProfile}>User Profile</h1>
+					</div>
+					:
+					null
+				}
+
+		        {
+		        	this.props.loggedIn === false 
+		        	? 
+		        	null 
+		        	: 
+		        	<Logout 
+		        		masterLogout={this.props.masterLogout}
+		        	/>
+		    	}
 		        {
 		        	this.props.loggedIn === true 
 		        	? 
@@ -263,8 +283,6 @@ class HomePage extends Component {
 		        	</Collapsible>
 		        }
 
-		        <br/>
-		        
 		        
 		        {
 		        	this.props.loggedIn === true 
@@ -280,17 +298,7 @@ class HomePage extends Component {
 		        	</Collapsible>
 		        }
 
-		        <br/>
 
-		        {
-		        	this.props.loggedIn === false 
-		        	? 
-		        	null 
-		        	: 
-		        	<Logout 
-		        		masterLogout={this.props.masterLogout}
-		        	/>
-		    	}
 
 		    	<br/>
 
@@ -314,6 +322,7 @@ class HomePage extends Component {
 		    		this.props.loggedIn === true && this.state.ShowUserProfile === true 
 		        	? 
 		    		<UserProfile 
+		    			username={this.props.username}
 		    			userPosts={this.props.userPosts} 
 		    			viewPost={this.viewPost} 
 		    		/>
@@ -347,6 +356,7 @@ class HomePage extends Component {
 			        	viewAllPosts={this.viewAllPosts}
 		        	/> 
 		        	<Comments comments={this.state.comments} 
+		        		loggedIn={this.props.loggedIn}
 		        		delete={this.deleteComment}
 		        		commentMessage={this.state.commentMessage}
 		        	/>

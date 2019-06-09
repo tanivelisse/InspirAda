@@ -21,7 +21,9 @@ class UserProfile extends Component {
 		})
 		return(
 			<div>
-				<h1>UserProfile</h1>
+				<h1>Username: {this.props.username}</h1>
+				
+				<h2> Your posts </h2>
 				{userPostsToDisplay}
 			</div>
 		)

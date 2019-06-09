@@ -23,10 +23,8 @@ class Logout extends Component {
 	}
 	render() {
 		return(
-			<div className="Logout">
-				
-					<br/><h1 onClick={this.handleSubmit} id="logoutButton">Logout</h1>
-				
+			<div className="nav-link">
+					<h1 onClick={this.handleSubmit} id="logoutButton">Logout</h1>
 			</div>
 		)
 	}
