@@ -9,11 +9,12 @@ import PostShowPage from "../PostShowPage";
 import EditPost from '../EditPost';
 import Comments from '../Comments';
 import CreateComment from "../CreateComment";
+import UserProfile from "../UserProfile";
 
 // PENDING ABOUT COMPONENT
 // PENDING CONTACT COMPONENT
 // PENDING USER PROFILE COMPONENT
-// ADJUST PICTURE SIZE IN SHOW PAGE
+// ADJUST PICTURE SIZE IN SHOW PAGE & All Posts with CSS
 
 
 class HomePage extends Component {
@@ -22,6 +23,9 @@ class HomePage extends Component {
 		this.state = {
 			posts: [],
 			postToShowIndex: null,
+			ShowUserProfile: false,
+			ShowAllPosts: true,
+			ShowOnePost:false,
 			ShowPage: false,
 			postToEdit:null,
 			comments:[],
@@ -34,16 +38,31 @@ class HomePage extends Component {
 		this.getAllPosts();
 	}
 
+	viewProfile = () => {
+		console.log("viewProfile was called");
+		//we will need to set the state of ShowUserProfile
+		this.setState({
+			ShowUserProfile: true,
+			ShowAllPosts: false,
+			ShowOnePost:false
+		})
+	}
+
 	viewPost = (postIndex) => {
 		this.setState({
 			postToShowIndex: postIndex,
+			ShowOnePost: true,
+			ShowAllPosts: false,
+			ShowUserProfile:false
 		})
 		this.getComments(this.state.posts[postIndex])
 	}
 
 	viewAllPosts = () => {
 		this.setState({
-			postToShowIndex: null,
+			ShowOnePost: false,
+			ShowUserProfile: false,
+			ShowAllPosts:true
 		})
 	}
 
@@ -229,7 +248,7 @@ class HomePage extends Component {
 		return(
 			<div className="Homepage">
 				<h1 onClick={this.viewAllPosts}>InspirAda</h1>
-				
+				<h1 onClick={this.viewProfile}>User Profile</h1>
 		        {
 		        	this.props.loggedIn === true 
 		        	? 
@@ -274,7 +293,7 @@ class HomePage extends Component {
 		    	}
 
 		    	<br/>
-		        	
+
 		        {
 		        	this.props.loggedIn === false 
 		        	? 
@@ -289,11 +308,24 @@ class HomePage extends Component {
 		        	/>
 		        	</Collapsible>
 		        }
+		    	
+
+		    	{
+		    		this.props.loggedIn === true && this.state.ShowUserProfile === true 
+		        	? 
+		    		<UserProfile 
+		    			userPosts={this.props.userPosts} 
+		    			viewPost={this.viewPost} 
+		    		/>
+		    		:
+		    		null
+		    	}
+		        	
 
 		        <br/>
 
 		        {
-		        	this.state.postToShowIndex === null 
+		        	this.state.ShowOnePost === false && this.state.ShowAllPosts === true 
 		        	? 
 		        	<AllPosts 
 		        		viewPost={this.viewPost} 
@@ -304,10 +336,8 @@ class HomePage extends Component {
 		    	} 
 		        
 		        {
-		        	this.state.postToShowIndex === null 
-		        	? 
-		        	null 
-		        	:
+		        	this.state.ShowOnePost === true && this.state.ShowUserProfile === false
+		        	?
 		        	<div> 
 		        	<PostShowPage 
 			        	post={this.state.posts[this.state.postToShowIndex]} 
@@ -325,6 +355,8 @@ class HomePage extends Component {
 		        		getCreatedComment={this.getCreatedComment} 
 		        	/>
 		        	</div>
+		        	:
+		        	null
 		        }
 
 		        {

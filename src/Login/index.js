@@ -30,8 +30,8 @@ class Login extends Component {
 		});
 		parseResponse = await logResponse.json();
         // console.log(parseResponse);
-        // console.log("user object:");
-        // console.log(parseResponse.user);
+        console.log("user posts:");
+        console.log(parseResponse.user, parseResponse.user_posts);
 
 		}catch(err){
 			console.log(err);
@@ -39,7 +39,7 @@ class Login extends Component {
 
 		//IF LOGGED IN STATE IS LIFTED TO APP.JS
 		if(parseResponse.success){
-			this.props.masterLogin(parseResponse.user.username, parseResponse.user.id)
+			this.props.masterLogin(parseResponse.user.username, parseResponse.user.id, parseResponse.user_posts)
 		}
 		//ELSE SHOW MESSAGE
 		else if(parseResponse.success !== true){

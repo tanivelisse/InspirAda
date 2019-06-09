@@ -80,6 +80,7 @@ class AllPosts extends Component {
 					<h2>{post.f_name} {post.l_name}</h2>
 					<span>Post Category: {post.category}</span><br/>
 					<span>Post Title: {post.title}</span><br/>
+					<span>Post By: {post.user_username}</span><br/>
 					</div>
 					<button className="viewButton" onClick={this.props.viewPost.bind(null, i)}>View</button><br/>
 				</li><br/>

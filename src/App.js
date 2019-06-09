@@ -12,16 +12,18 @@ class App extends Component {
     this.state = {
       username: '',
       userId: null,
-      loggedIn: false
+      loggedIn: false,
+      userPosts: []
     }
   }
 
-  masterLogin = (username, userId) => {
+  masterLogin = (username, userId, userPosts) => {
     console.log("master login hit")
     this.setState({
       loggedIn: true,
       username: username,
-      userId: userId
+      userId: userId,
+      userPosts: userPosts
     });
   }
 
@@ -38,8 +40,10 @@ class App extends Component {
         <Homepage loggedIn={this.state.loggedIn} 
         username={this.state.username} 
         userId={this.state.userId}
+        userPosts={this.state.userPosts}
         masterLogin={this.masterLogin} 
-        masterLogout={this.masterLogout}/>
+        masterLogout={this.masterLogout}
+        />
       </div>
     );
   }
