@@ -1,6 +1,8 @@
 import React from 'react';
 
 const PostShowPage =(props)=>{
+			console.log("props.post");
+			console.log(props.post);
 		return(
 			<div className="PostShowPage">
 			<button onClick={props.viewAllPosts}>Back to menu</button>
@@ -11,6 +13,7 @@ const PostShowPage =(props)=>{
 				<span>{props.post.category}</span><br/>
 				<span>{props.post.title}</span><br/>
 				<span>{props.post.body}</span><br/>
+				<span>{props.post.user_username}</span><br/>
 				<button onClick={props.getPostToEdit.bind(null, props.post)}>Edit</button>
 				<button onClick={props.delete.bind(null, props.post)}>Delete</button><br/>
 				{props.postMessage}

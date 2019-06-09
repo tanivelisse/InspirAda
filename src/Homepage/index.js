@@ -12,10 +12,9 @@ import CreateComment from "../CreateComment";
 
 // PENDING ABOUT COMPONENT
 // PENDING CONTACT COMPONENT
-// PENDING SEARCH BAR
-// PENDING FILTER OPTIONS comming soon on a streach
 // PENDING USER PROFILE COMPONENT
 // ADJUST PICTURE SIZE IN SHOW PAGE
+
 
 class HomePage extends Component {
 	constructor(){
@@ -141,14 +140,12 @@ class HomePage extends Component {
 				});
 				await deleteResponse.json();
 	  			this.setState({
-	  				posts: this.state.posts.filter((post)=> post.id !== postToDelete.id)
+	  				posts: this.state.posts.filter((post)=> post.id !== postToDelete.id),
+	  				postToShowIndex: null,
 	  			})
 			}catch(err){
 				console.log(err);
 			}
-			this.setState({
-				postToShow: null
-			})
 		}
 		else {
 			this.setState({

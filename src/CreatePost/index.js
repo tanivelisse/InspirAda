@@ -36,6 +36,14 @@ class CreatePost extends Component {
 	        // console.log("user object:");
 	        // console.log(parseResponse.post);
 	        this.props.getCreatedPost(parseResponse.post);
+	        this.setState({
+				photo_url:'',
+				f_name:'',
+				l_name:'',
+				category:'',
+				title:'',
+				body:''
+		});
 		}catch(err){
 			console.log(err);
 		}
@@ -48,22 +56,22 @@ class CreatePost extends Component {
 				<h1>Create a Post</h1>
 				<form onSubmit={this.handleSubmit}>
 					Photo URL:
-					<input name="photo_url" onChange={this.handleChange}/><br/>
+					<input name="photo_url" onChange={this.handleChange} value={this.state.photo_url}/><br/>
 					First name:
-					<input name="f_name" onChange={this.handleChange}/><br/>
+					<input name="f_name" onChange={this.handleChange} value={this.state.f_name}/><br/>
 					Last name:
-					<input name="l_name" onChange={this.handleChange}/><br/>
+					<input name="l_name" onChange={this.handleChange} value={this.state.l_name}/><br/>
 					Category:
-					<select name="category" onChange={this.handleChange}>
+					<select name="category" onChange={this.handleChange} value={this.state.category}>
 						<option>Select a category</option>
 						<option>Women in the History of Tech</option>
 						<option>The Women of Tech</option>
 						<option>The Future Women of Tech</option>
 					</select><br/>
 					Title:
-					<input name="title" onChange={this.handleChange}/><br/>
+					<input name="title" onChange={this.handleChange} value={this.state.title}/><br/>
 					Share your thoughts here: 
-					<textarea name="body" onChange={this.handleChange}></textarea><br/>
+					<textarea name="body" onChange={this.handleChange} value={this.state.body}></textarea><br/>
 					<button>Create</button>
 				</form>
 			</div>
