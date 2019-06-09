@@ -1,6 +1,8 @@
 .App {
-  text-align: left;
-  margin-left: 10px;
+	font-family: 'Raleway', sans-serif;
+	font-size: 14pt;
+  	text-align: left;
+ 	margin-left: 10px;
 }
 
 ul {
@@ -10,17 +12,61 @@ ul {
 
 li {
 	list-style: none;
-	background:rgba(190,229,153,.8);
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 5px;
+	box-shadow: 10px 5px 5px lavender;
+	width: 800px;
+}
+
+button {
+	background: lavender;
+	border:none;
+	border-radius: 5px;
+	font-size: 12pt;
+}
+
+div {
+	overflow-wrap: break-word;
+}
+
+.About {
+	margin: 10PX;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#dev-pic {
+	float: left;
+	margin-right: 10px;
+	border-radius: 100px;
+}
+
+.about-text {
+	margin-left: 10px 0 10px 0;
+	width: 800px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .AllPostsImageBox{
+	background: black;
 	display: inline-block;
+	height: 200px;
 	width: 200px;
+	border-radius: 10px;
+	text-align: center;
 	overflow: hidden;
 
 }
 
 .AllPostsDetailsBox {
+	margin-left: 10px;
 	display: inline-block;
 	width: 400px;
 }
@@ -30,40 +76,144 @@ li {
 	background: purple;
 	font-size: 24pt;
 	color: white;
+	border-radius: 10px;
+	padding-left: 10px;
+	margin-right: 10px;
 }
 
 .Register {
-	background: lavender;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;	
 }
 
 .Login {
-	background: lavender;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.log-reg-input {
+	margin-left: 10px;
+	border-radius: 5px;
+	height: 25px;
+	width: 250px;
+	font-size: 14pt;
+}
+
+.log-reg-textarea {
+	margin-left: 10px;
+	border-radius: 5px;
+	height: 100px;
+	width: 250px;
+	font-size: 14pt;
+}
+.nav-link {
+	display: inline-block;
+	margin: 5px;
+
 }
 
 .CreatePost {
-	background: pink;
+	font-size: 18pt;
 }
 
 .AllPosts {
-	background: lightblue;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-.viewButton {
-	display: flex;
-	align-self: right;
+.searchbox {
+	border: 1px solid black;
+	border-radius: 100px;
+	height: 30px;
+	width: 200px;
+	font-size: 14pt;
+	text-align: center;
 }
 
 .PostShowPage {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.Post {
 	background: pink;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 10px;
+	box-shadow: 10px 5px 5px lavender;
+	width: 800px;
+}
+
+.post-img {
+	height: 200px;
+	border-radius: 5px;
+}
+
+.post-body {
+	background: white;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 10px; 
 }
 
 .EditPost {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.EditPostForm {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	justify-content: flex-start;
 	background: gray;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 10px; 
+	margin: 20px;
+	width: 800px;
+}
+
+.EditPostForm button {
+	width: 70px;
+}
+
+.AllComments {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.CreateComment {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.create-comment-box {
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 5px;
+	width: 800px;
 }
 
 #Logout {
 	background: white;
 	
+}
+
+#footer {
+	text-align: center;
+	position: bottom;
+	margin-right: 10px;
+	height: 30px;
 }
 
 

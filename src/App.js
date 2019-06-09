@@ -30,6 +30,7 @@ class App extends Component {
   masterLogout = () => {
     this.setState({
       loggedIn: false,
+      
     });
   }
 

@@ -6,7 +6,7 @@ const Comments = (props) => {
 
 	const displayComments = commentsToDisplay.map((comment,i)=>{
 		return(
-				<div key={i}>
+				<div key={i} className="comment-box">
 					<li key={i} value={comment}>
 					
 						<span>{comment.body}</span><br/>
@@ -19,7 +19,7 @@ const Comments = (props) => {
 		)
 	});
 	return(
-			<div>
+			<div className="AllComments">
 			<h1>Comments</h1>
 			{displayComments}
 			</div>

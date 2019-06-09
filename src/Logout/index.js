@@ -20,11 +20,12 @@ class Logout extends Component {
 			console.log(err);
 		}
 		this.props.masterLogout();
+		this.props.viewAllPosts();
 	}
 	render() {
 		return(
 			<div className="nav-link">
-					<h1 onClick={this.handleSubmit} id="logoutButton">Logout</h1>
+					<h1 onClick={this.handleSubmit} id="logoutButton"> Logout</h1>
 			</div>
 		)
 	}

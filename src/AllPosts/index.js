@@ -71,10 +71,10 @@ class AllPosts extends Component {
 		const postsToDisplay = this.state.filteredPosts
 		const displayPosts = postsToDisplay.map((post,i)=>{
 			return(
-				<div key={i}>
+				<div key={i} onClick={this.props.viewPost.bind(null, i)}>
 				<li key={i} value={post}>
 					<div className="AllPostsImageBox">
-					<img alt="woman in tech"src={post.photo_url} height="200px"/><br/>
+					<img alt="woman in tech"src={post.photo_url}/><br/>
 					</div>
 					<div className="AllPostsDetailsBox">
 					<h2>{post.f_name} {post.l_name}</h2>
@@ -82,7 +82,6 @@ class AllPosts extends Component {
 					<span>Post Title: {post.title}</span><br/>
 					<span>Post By: {post.user_username}</span><br/>
 					</div>
-					<button className="viewButton" onClick={this.props.viewPost.bind(null, i)}>View</button><br/>
 				</li><br/>
 				</div>
 			)
@@ -91,7 +90,7 @@ class AllPosts extends Component {
 
 			<div className="AllPosts">
 			
-	    		<input type="text" className="input" onChange={this.handleChange} placeholder="Search..." />
+	    		<input type="text" className="searchbox" onChange={this.handleChange} placeholder="Search by name..." />
 	   			 		
 				<h1>All Posts</h1>
 

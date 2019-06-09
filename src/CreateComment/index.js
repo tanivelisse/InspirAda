@@ -18,7 +18,7 @@ class CreateComment extends Component {
 		 console.log("Comment Create handleSubmit called");
 		e.preventDefault();
 
-		if(this.props.loggedIn) {
+		if(this.props.loggedIn === true) {
 			try{
 				const createResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/new_comment/" + this.props.post.id,{
 					method:"POST",
@@ -51,11 +51,15 @@ class CreateComment extends Component {
 		console.log('created comment');
 		console.log(this.state);
 		return(
-			<div>
+			<div className="CreateComment">
 				<form onSubmit={this.handleSubmit}>
 					Add Comment:
-					<br/><textarea name="body" onChange={this.handleChange} value={this.state.body}></textarea>
-					<button>add</button>
+					<br/><textarea 
+							className="create-comment-box" 
+							name="body" onChange={this.handleChange} 
+							value={this.state.body}>
+						</textarea><br/>
+					<button>Add</button>
 					{this.state.message}
 				</form>
 			</div>

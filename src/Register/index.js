@@ -53,15 +53,15 @@ class Register extends Component {
 		//console.log(this.state);
     return (
       <div className="Register">
-	        <form onSubmit={this.handleSubmit}>
+	        <form onSubmit={this.handleSubmit}><br/>
 		        email:
-		        <input type="email" name='email' onChange={this.handleChange}/><br/>
+		        <br/><input className="log-reg-input" type="email" name='email' onChange={this.handleChange}/><br/>
 		        username: 
-		        <input type="text" name='username' onChange={this.handleChange}/><br/>
+		        <br/><input className="log-reg-input" type="text" name='username' onChange={this.handleChange}/><br/>
 		        password:
-		        <input type="password" name='password'  onChange={this.handleChange}/><br/>
+		        <br/><input className="log-reg-input" type="password" name='password'  onChange={this.handleChange}/><br/>
 		        about:
-		        <input type="text" name='about' onChange={this.handleChange}/><br/>
+		        <br/><input className="log-reg-textarea" type="text" name='about' onChange={this.handleChange}/><br/>
 		        <h1>{this.state.message}</h1>
 		        <button>Register</button>
 	        </form>

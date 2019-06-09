@@ -34,25 +34,60 @@ class EditPost extends Component {
 		//console.log(this.props.post);
 		return(
 			<div className="EditPost">
+				<form className="EditPostForm" onSubmit={this.handleSubmit}>
 				<h1>Edit Your Post</h1>
-				<form onSubmit={this.handleSubmit}>
 					Photo URL:
-					<input type="text" name="photo_url" onChange={this.handleChange} value={this.state.photo_url}/><br/>
+					<input 
+						className="log-reg-input"
+						type="text" 
+						name="photo_url" 
+						onChange={this.handleChange} 
+						value={this.state.photo_url}/>
+					<br/>
 					First name:
-					<input type="text" name="f_name" onChange={this.handleChange} value={this.state.f_name}/><br/>
+					<input 
+						className="log-reg-input"
+						type="text" name="f_name" 
+						onChange={this.handleChange} 
+						value={this.state.f_name}/>
+					<br/>
 					Last name:
-					<input type="text" name="l_name" onChange={this.handleChange} value={this.state.l_name}/><br/>
+					<input 
+						className="log-reg-input"
+						type="text" 
+						name="l_name" 
+						onChange={this.handleChange} 
+						value={this.state.l_name}/>
+					<br/>
 					Category:
-					<select type="text" name="category" onChange={this.handleChange} value={this.state.category}>
+					<select 
+						className="log-reg-input"
+						type="text" 
+						name="category" 
+						onChange={this.handleChange} 
+						value={this.state.category}>
 						<option>Select a category</option>
 						<option>Women in the History of Tech</option>
 						<option>The Women of Tech</option>
 						<option>The Future Women of Tech</option>
 					</select><br/>
 					Title:
-					<input type="text" name="title" onChange={this.handleChange} value={this.state.title}/><br/>
-					Share your thoughts here: 
-					<textarea type="text" name="body" onChange={this.handleChange} value={this.state.body}></textarea><br/>
+					<input
+					 	className="log-reg-input"
+						type="text" name="title" 
+						onChange={this.handleChange} 
+						value={this.state.title}/>
+					<br/>
+					Share your thoughts here:
+					<br/> 
+					<textarea 
+						className="log-reg-textarea"
+						type="text" 
+						name="body" 
+						onChange={this.handleChange} 
+						value={this.state.body}>
+					</textarea>
+					<br/>
 					<button>Update</button>
 				</form>
 			</div>

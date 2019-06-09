@@ -5,18 +5,17 @@ const PostShowPage =(props)=>{
 			console.log(props.post);
 		return(
 			<div className="PostShowPage">
-			<button onClick={props.viewAllPosts}>Back to menu</button>
-			<h1>PostShowPage</h1>
-				<img alt="woman in tech"src={props.post.photo_url} height="400"/><br/>
-				<span>{props.post.f_name}</span><br/>
-				<span>{props.post.l_name}</span><br/>
-				<span>{props.post.category}</span><br/>
-				<span>{props.post.title}</span><br/>
-				<span>{props.post.body}</span><br/>
-				<span>{props.post.user_username}</span><br/>
-				<button onClick={props.getPostToEdit.bind(null, props.post)}>Edit</button>
-				<button onClick={props.delete.bind(null, props.post)}>Delete</button><br/>
-				{props.postMessage}
+				<div className="Post">
+				<h1>{props.post.f_name} {props.post.l_name}</h1>
+					<img className="post-img" alt="woman in tech"src={props.post.photo_url} height="400"/><br/>
+					<h4>Category: {props.post.category}</h4>
+					<h4>Post Title: {props.post.title}</h4>
+					<h4>Post by: {props.post.user_username}</h4>
+					<p className="post-body">{props.post.body}</p><br/>
+					<span onClick={props.getPostToEdit.bind(null, props.post)}>Edit |</span>
+					<span onClick={props.delete.bind(null, props.post)}>Delete</span><br/>
+					{props.postMessage}
+				</div>
 			</div>	
 		)
 	

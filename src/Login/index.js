@@ -51,11 +51,11 @@ class Login extends Component {
 	render(){
 		return(
 			<div className="Login">
-				<form onSubmit={this.handleSubmit}>
+				<form className="log-reg-form" onSubmit={this.handleSubmit}><br/>
 					username: 
-			        <input type="text" name='username' onChange={this.handleChange}/><br/>
+			        <br/><input className="log-reg-input" type="text" name='username' onChange={this.handleChange}/><br/>
 			        password:
-			        <input type="password" name='password'  onChange={this.handleChange}/><br/>
+			        <br/><input className="log-reg-input" type="password" name='password'  onChange={this.handleChange}/><br/>
 			        <h1>{this.state.message}</h1>
 			        <button>Login</button>
 				</form>

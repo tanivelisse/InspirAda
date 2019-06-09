@@ -23,12 +23,14 @@ class CreatePost extends Component {
 		console.log("create handleSubmit was called");
 		let parseResponse = null;
 		try{
-			const createResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/new_post",{
-				method:"POST",
-				credentials: "include",
-				body: JSON.stringify(this.state),
-				headers: {
-					"Content-Type":"application/Jason"
+			const createResponse = await fetch(
+				process.env.REACT_APP_SERVER_URL + "/api/v1/posts/new_post",
+				{
+					method:"POST",
+					credentials: "include",
+					body: JSON.stringify(this.state),
+					headers: {
+						"Content-Type":"application/Jason"
 				}
 			});
 			parseResponse = await createResponse.json();
@@ -53,25 +55,54 @@ class CreatePost extends Component {
 		//console.log(this.state);
 		return(
 			<div className="CreatePost">
-				<h1>Create a Post</h1>
 				<form onSubmit={this.handleSubmit}>
+				<br/>
 					Photo URL:
-					<input name="photo_url" onChange={this.handleChange} value={this.state.photo_url}/><br/>
+					<input 
+						className="log-reg-input" 
+						name="photo_url" 
+						onChange={this.handleChange} 
+						value={this.state.photo_url}/><br/>
 					First name:
-					<input name="f_name" onChange={this.handleChange} value={this.state.f_name}/><br/>
+					<input 
+					className="log-reg-input" 
+					name="f_name" onChange={this.handleChange} 
+					value={this.state.f_name}/>
+					<br/>
 					Last name:
-					<input name="l_name" onChange={this.handleChange} value={this.state.l_name}/><br/>
+					<input 
+						className="log-reg-input" 
+						name="l_name" onChange={this.handleChange} 
+						value={this.state.l_name}/>
+					<br/>
 					Category:
-					<select name="category" onChange={this.handleChange} value={this.state.category}>
-						<option>Select a category</option>
-						<option>Women in the History of Tech</option>
-						<option>The Women of Tech</option>
-						<option>The Future Women of Tech</option>
-					</select><br/>
+					<select 
+						className="log-reg-input" 
+						name="category" 
+						onChange={this.handleChange} 
+						value={this.state.category}>
+							<option>Select a category</option>
+							<option>Women in the History of Tech</option>
+							<option>The Women of Tech</option>
+							<option>The Future Women of Tech</option>
+					</select>
+					<br/>
 					Title:
-					<input name="title" onChange={this.handleChange} value={this.state.title}/><br/>
+					<input 
+						className="log-reg-input" 
+						name="title" 
+						onChange={this.handleChange} 
+						value={this.state.title}/>
+					<br/>
 					Share your thoughts here: 
-					<textarea name="body" onChange={this.handleChange} value={this.state.body}></textarea><br/>
+					<br/>
+					<textarea 
+						className="log-reg-textarea" 
+						name="body" onChange={this.handleChange} 
+						value={this.state.body} 
+						placeholder="Click bottom right corner to expand">
+					</textarea>
+					<br/>
 					<button>Create</button>
 				</form>
 			</div>

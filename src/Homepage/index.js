@@ -10,9 +10,9 @@ import EditPost from '../EditPost';
 import Comments from '../Comments';
 import CreateComment from "../CreateComment";
 import UserProfile from "../UserProfile";
+import About from "../About";
 
-// PENDING ABOUT COMPONENT
-// PENDING CONTACT COMPONENT
+
 // ADJUST PICTURE SIZE IN SHOW PAGE & All Posts with CSS
 
 
@@ -62,6 +62,14 @@ class HomePage extends Component {
 			ShowOnePost: false,
 			ShowUserProfile: false,
 			ShowAllPosts:true
+		})
+	}
+
+	viewAbout = () => {
+		this.setState({
+		ShowOnePost: false,
+		ShowUserProfile: false,
+		ShowAllPosts:false
 		})
 	}
 
@@ -160,6 +168,8 @@ class HomePage extends Component {
 	  			this.setState({
 	  				posts: this.state.posts.filter((post)=> post.id !== postToDelete.id),
 	  				postToShowIndex: null,
+	  				ShowOnePost:false,
+	  				ShowAllPosts:true
 	  			})
 			}catch(err){
 				console.log(err);
@@ -229,9 +239,7 @@ class HomePage extends Component {
 			}catch(err){
 				console.log(err);
 			}
-			this.setState({
-				postToShow: null
-			})
+			
 		}
 		else{
 			this.setState({
@@ -248,13 +256,16 @@ class HomePage extends Component {
 		return(
 			<div className="Homepage">
 				<div className="nav-link">
-					<h1 onClick={this.viewAllPosts}>InspirAda</h1>
+					<h1 onClick={this.viewAllPosts}> InspirAda |</h1>
+				</div>
+				<div className="nav-link">
+					<h1 onClick={this.viewAbout}> About </h1>
 				</div>
 				{
 					this.props.loggedIn === true
 					?
 					<div className="nav-link">
-						<h1 onClick={this.viewProfile}>User Profile</h1>
+						<h1 onClick={this.viewProfile}>| User Profile | </h1>
 					</div>
 					:
 					null
@@ -267,6 +278,7 @@ class HomePage extends Component {
 		        	: 
 		        	<Logout 
 		        		masterLogout={this.props.masterLogout}
+		        		viewAllPosts={this.viewAllPosts}
 		        	/>
 		    	}
 		        {
@@ -283,7 +295,8 @@ class HomePage extends Component {
 		        	</Collapsible>
 		        }
 
-		        
+		        <br/>
+
 		        {
 		        	this.props.loggedIn === true 
 		        	? 
@@ -345,9 +358,14 @@ class HomePage extends Component {
 		    	} 
 		        
 		        {
-		        	this.state.ShowOnePost === true && this.state.ShowUserProfile === false
+		        	this.state.ShowOnePost === true 
+		        	&& 
+		        	this.state.ShowUserProfile === false 
+		        	&& 
+		        	this.state.ShowAllPosts === false
 		        	?
 		        	<div> 
+		        	<h3 onClick={this.viewAllPosts}>Back to menu</h3>
 		        	<PostShowPage 
 			        	post={this.state.posts[this.state.postToShowIndex]} 
 			        	postMessage={this.state.postMessage}
@@ -355,20 +373,10 @@ class HomePage extends Component {
 			        	delete={this.deletePost}
 			        	viewAllPosts={this.viewAllPosts}
 		        	/> 
-		        	<Comments comments={this.state.comments} 
-		        		loggedIn={this.props.loggedIn}
-		        		delete={this.deleteComment}
-		        		commentMessage={this.state.commentMessage}
-		        	/>
-		        	<CreateComment 
-		        		post={this.state.posts[this.state.postToShowIndex]}
-		        		getCreatedComment={this.getCreatedComment} 
-		        	/>
 		        	</div>
 		        	:
 		        	null
 		        }
-
 		        {
 		        	this.state.postToEdit === null 
 		        	? 
@@ -381,7 +389,48 @@ class HomePage extends Component {
 			        	getAllPosts={this.getAllPosts}
 		        	/>
 		        }
+		        {
+		        	this.state.ShowOnePost === true 
+		        	&& 
+		        	this.state.ShowUserProfile === false 
+		        	&& 
+		        	this.state.ShowAllPosts === false
+		        	?
+		        	<div>
+		        	<Comments comments={this.state.comments} 
+		        		delete={this.deleteComment}
+		        		commentMessage={this.state.commentMessage}
+		        	/>
+		        	<CreateComment 
+		        		loggedIn={this.props.loggedIn}
+		        		post={this.state.posts[this.state.postToShowIndex]}
+		        		getCreatedComment={this.getCreatedComment} 
+		        	/>
+		        	<h3 onClick={this.viewAllPosts}>Back to menu</h3>
+		        	</div>
+		        	:
+		        	null
+		        }
+
+		        {
+		        	this.state.ShowOnePost === false 
+		        	&& 
+		        	this.state.ShowAllPosts === false
+		        	&& 
+		        	this.state.ShowUserProfile === false
+		        	?
+		        	 <About/>
+		        	:
+		        	null
+		        }
 		        
+		      	<div id="footer">
+		      		<footer>
+		      			<hr/>
+		      			<p>Copy Right © TIMP 2019</p>
+		      			<hr/>
+		      		</footer>
+		      	</div>  
 		    </div>
 		)
 	}
