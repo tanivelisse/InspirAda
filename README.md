@@ -1,5 +1,7 @@
 # InspirAda
 
+Deployed with Heroku: (https://inpirada.herokuapp.com/)
+
 ### GA SEI Capstone Project
 
 InspirAda blog app was originally built as full stack MVC app with CRUD functionalities using Ruby Sinatra and SQL. This was a pair programing project. 

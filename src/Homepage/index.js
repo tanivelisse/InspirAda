@@ -105,7 +105,7 @@ class HomePage extends Component {
 				}
 			);
 			let parseResponse = await postsResponse.json();
-        	console.log(parseResponse.posts);
+        	console.log(parseResponse.posts.reverse());
 
 			this.setState({
 				posts: parseResponse.posts
@@ -119,7 +119,7 @@ class HomePage extends Component {
 	getCreatedPost = (newPost)=>{
 		//console.log(...this.state.posts);
 		this.setState({
-			posts: [...this.state.posts,newPost]
+			posts: [newPost,...this.state.posts]
 		})
 		
 	}
@@ -254,7 +254,7 @@ class HomePage extends Component {
 			}
 			
 		}
-		
+
 		else{
 			this.setState({
 				commentMessage:"Unable to Delete Comment"

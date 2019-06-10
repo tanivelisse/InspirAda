@@ -69,6 +69,7 @@ class AllPosts extends Component {
 		console.log("this.state.filtered");
 		console.log(this.state.filteredPosts);
 		const postsToDisplay = this.state.filteredPosts
+
 		const displayPosts = postsToDisplay.map((post,i)=>{
 			return(
 				<div key={i} onClick={this.props.viewPost.bind(null, i)}>
@@ -104,7 +105,7 @@ class AllPosts extends Component {
 				</ul>
 
 				{this.state.noMatchMessage}
-				
+
 			</div>
 		)
 	}	
