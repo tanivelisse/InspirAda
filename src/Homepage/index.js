@@ -288,6 +288,7 @@ class HomePage extends Component {
 		        	: 
 		        	<Collapsible 
 		        	trigger="Register"
+		        	triggerWhenOpen="Click Again to Close"
 		        	>
 		        	<Register 
 		        		masterLogin={this.props.masterLogin}
@@ -304,6 +305,7 @@ class HomePage extends Component {
 		        	: 
 		        	<Collapsible 
 		        		trigger="Login"
+		        		triggerWhenOpen="Click Again to Close"
 		        	>
 		        	<Login 
 		        		masterLogin={this.props.masterLogin}
@@ -423,7 +425,7 @@ class HomePage extends Component {
 		        	:
 		        	null
 		        }
-		        
+
 		      	<div id="footer">
 		      		<footer>
 		      			<hr/>

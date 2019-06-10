@@ -9,7 +9,8 @@ class CreatePost extends Component {
 			l_name:'',
 			category:'',
 			title:'',
-			body:''
+			body:'',
+			message:''
 		}
 	}
 	handleChange = (e) =>{
@@ -22,32 +23,51 @@ class CreatePost extends Component {
 		e.preventDefault();
 		console.log("create handleSubmit was called");
 		let parseResponse = null;
-		try{
-			const createResponse = await fetch(
-				process.env.REACT_APP_SERVER_URL + "/api/v1/posts/new_post",
-				{
-					method:"POST",
-					credentials: "include",
-					body: JSON.stringify(this.state),
-					headers: {
-						"Content-Type":"application/Jason"
-				}
+		if(	
+			this.state.photo_url !== ""
+			&&
+			this.state.f_name !== ""
+			&&
+			this.state.l_name !== ""
+			&& 
+			this.state.category !== ""
+			&&
+			this.state.title !== ""
+			&&
+			this.state.body !== ""
+		) {
+
+			try{
+				const createResponse = await fetch(
+					process.env.REACT_APP_SERVER_URL + "/api/v1/posts/new_post",
+					{
+						method:"POST",
+						credentials: "include",
+						body: JSON.stringify(this.state),
+						headers: {
+							"Content-Type":"application/Jason"
+					}
+				});
+				parseResponse = await createResponse.json();
+		        // console.log(parseResponse);
+		        // console.log("user object:");
+		        // console.log(parseResponse.post);
+		        this.props.getCreatedPost(parseResponse.post);
+		        this.setState({
+					photo_url:'',
+					f_name:'',
+					l_name:'',
+					category:'',
+					title:'',
+					body:''
 			});
-			parseResponse = await createResponse.json();
-	        // console.log(parseResponse);
-	        // console.log("user object:");
-	        // console.log(parseResponse.post);
-	        this.props.getCreatedPost(parseResponse.post);
-	        this.setState({
-				photo_url:'',
-				f_name:'',
-				l_name:'',
-				category:'',
-				title:'',
-				body:''
-		});
-		}catch(err){
-			console.log(err);
+			}catch(err){
+				console.log(err);
+			}
+		}else{
+			this.setState({
+				message: "Please fill out all boxes"
+			})
 		}
 
 	}
@@ -104,6 +124,7 @@ class CreatePost extends Component {
 					</textarea>
 					<br/>
 					<button>Create</button>
+					<h4>{this.state.message}</h4>
 				</form>
 			</div>
 		)
