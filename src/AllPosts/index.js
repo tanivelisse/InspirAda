@@ -90,14 +90,21 @@ class AllPosts extends Component {
 
 			<div className="AllPosts">
 			
-	    		<input type="text" className="searchbox" onChange={this.handleChange} placeholder="Search by name..." />
+	    		<input
+	    			type="text" 
+	    			className="searchbox" 
+	    			onChange={this.handleChange} 
+	    			placeholder="Search by name..." 
+	    		/>
 	   			 		
 				<h1>All Posts</h1>
 
 				<ul>
 					{displayPosts}
 				</ul>
+
 				{this.state.noMatchMessage}
+				
 			</div>
 		)
 	}	

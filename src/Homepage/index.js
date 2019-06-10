@@ -95,18 +95,22 @@ class HomePage extends Component {
 		//console.log('getAllPosts was called');
  
 		try{
-			const postsResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts", {
-				credentials: "include",
-				headers: {
-					"Content-Type":"application/Jason"
+			const postsResponse = await fetch(
+				process.env.REACT_APP_SERVER_URL + "/api/v1/posts", 
+				{
+					credentials: "include",
+					headers: {
+						"Content-Type":"application/Jason"
+					}
 				}
-			});
+			);
 			let parseResponse = await postsResponse.json();
         	console.log(parseResponse.posts);
 
 			this.setState({
 				posts: parseResponse.posts
 			})
+
 		}catch(err){
 			console.log(err);
 		}
@@ -135,7 +139,7 @@ class HomePage extends Component {
 	        console.log("user object:");
 	        console.log(parseResponse);
 
-	        ///// find index of post in array with id == id
+	        ///// find index of post in array with id === id
 	        const editedPostsArray = this.state.posts.map((post) => {
 
 	        	if (post.id === parseResponse.post.id){
@@ -160,10 +164,13 @@ class HomePage extends Component {
 		e.preventDefault();
 		if(this.props.userId === postToDelete.user_id){
 			try {
-				const deleteResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/" + postToDelete.id, {
-					method:"DELETE",
-					credentials:"include"
-				});
+				const deleteResponse = await fetch(
+					process.env.REACT_APP_SERVER_URL + "/api/v1/posts/" + postToDelete.id, 
+					{
+						method:"DELETE",
+						credentials:"include"
+					}
+				);
 				await deleteResponse.json();
 	  			this.setState({
 	  				posts: this.state.posts.filter((post)=> post.id !== postToDelete.id),
@@ -228,19 +235,26 @@ class HomePage extends Component {
 		if(this.props.userId === commentToDelete.user_id){
 
 			try {
-				const deleteCommentResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentToDelete.id, {
-					method:"DELETE",
-					credentials:"include"
-				});
+				const deleteCommentResponse = await fetch(
+					process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentToDelete.id, 
+					{
+						method:"DELETE",
+						credentials:"include"
+					}
+				);
 				await deleteCommentResponse.json();
 	  			this.setState({
-	  				comments: this.state.comments.filter((comment)=> comment.id !== commentToDelete.id)
+	  				comments: this.state.comments.filter(
+	  					(comment)=> comment.id !== commentToDelete.id
+	  				)
 	  			})
+
 			}catch(err){
 				console.log(err);
 			}
 			
 		}
+		
 		else{
 			this.setState({
 				commentMessage:"Unable to Delete Comment"
@@ -251,8 +265,8 @@ class HomePage extends Component {
 	
 	
 	render(){
-		console.log("Homepage comments state:")
-		console.log(this.state.comments);
+		//console.log("Homepage comments state:")
+		//console.log(this.state.comments);
 		return(
 			<div className="Homepage">
 				<div className="nav-link">

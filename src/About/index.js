@@ -35,7 +35,11 @@ const About = ()=>{
 
 			<div>
 			<h2>The Developer</h2>
-				<img id="dev-pic" src="https://i.imgur.com/iySuNFit.jpg?1" alt="InspirAda Developer"/>
+				<img 
+					id="dev-pic" 
+					src="https://i.imgur.com/iySuNFit.jpg?1"
+					alt="InspirAda Developer"
+				/>
 				<div className="about-text">
 					<p>
 						From the Jet-life to the Dev-life. 
