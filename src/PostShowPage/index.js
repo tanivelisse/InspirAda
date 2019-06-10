@@ -12,6 +12,7 @@ const PostShowPage =(props)=>{
 					<h4>Post Title: {props.post.title}</h4>
 					<h4>Post by: {props.post.user_username}</h4>
 					<p className="post-body">{props.post.body}</p><br/>
+
 					<span onClick={props.getPostToEdit.bind(null, props.post)}>Edit |</span>
 					<span onClick={props.delete.bind(null, props.post)}>Delete</span><br/>
 					{props.postMessage}

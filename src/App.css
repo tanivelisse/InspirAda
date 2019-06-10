@@ -3,6 +3,8 @@
 	font-size: 14pt;
   	text-align: left;
  	margin-left: 10px;
+ 	display: flex;
+ 	flex-direction: column;
 }
 
 ul {
@@ -209,11 +211,11 @@ img {
 	
 }
 
-#footer {
+footer {
+	align-self: center;
 	text-align: center;
 	position: bottom;
-	margin-right: 10px;
-	height: 30px;
+	width: 90%;
 }
 
 

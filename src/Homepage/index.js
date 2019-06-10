@@ -425,14 +425,6 @@ class HomePage extends Component {
 		        	:
 		        	null
 		        }
-
-		      	<div id="footer">
-		      		<footer>
-		      			<hr/>
-		      			<p>Copy Right © TIMP 2019</p>
-		      			<hr/>
-		      		</footer>
-		      	</div>  
 		    </div>
 		)
 	}
