@@ -142,7 +142,7 @@ img {
 }
 
 .Post {
-	background: pink;
+	background: lavender;
 	border: 1px solid black;
 	border-radius: 10px;
 	padding: 10px;
@@ -216,6 +216,42 @@ footer {
 	text-align: center;
 	position: bottom;
 	width: 90%;
+}
+
+@media (orientation: portrait) {
+	body {
+		width: 380px;
+	}
+
+	.nav-link {
+		margin: 5px;
+		font-size: 10pt;
+	}
+
+	ul {
+		padding-inline-start: 0px;
+	}
+
+	li {
+		display: flex;
+		flex-direction: column;
+		max-width: 290px;
+		flex-wrap: wrap;
+	}
+
+	.AllPostsDetailsBox {
+		margin-left: 10px;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.Post {
+		max-width: 290px;
+	}
+	.create-comment-box {
+		width: 290px;
+	}
 }
 
 
