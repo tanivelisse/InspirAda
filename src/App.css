@@ -235,12 +235,16 @@ footer {
 	li {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
 		max-width: 290px;
 		flex-wrap: wrap;
+		padding: 20px
 	}
 
 	.AllPostsDetailsBox {
-		margin-left: 10px;
+		margin-left: 0px;
 		display: flex;
 		flex-direction: column;
 		width: 100%;
