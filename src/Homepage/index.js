@@ -197,7 +197,7 @@ class HomePage extends Component {
 		console.log(post.id);
 		
 			try{
-				const commentsResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + post.id,{
+				const commentsResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/comments/" + post.id,{
 					credentials: "include",
 					headers: {
 						"Content-Type":"application/Jason"
@@ -229,14 +229,14 @@ class HomePage extends Component {
 	//DELETE COMMENT
 	
 	deleteComment = async(commentToDelete, e)=>{
-		console.log("deleteComment was called");
+		//console.log("deleteComment was called");
 		e.preventDefault();
 
 		if(this.props.userId === commentToDelete.user_id){
 
 			try {
 				const deleteCommentResponse = await fetch(
-					process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/" + commentToDelete.id, 
+					process.env.REACT_APP_SERVER_URL + "/api/v1/comments/" + commentToDelete.id, 
 					{
 						method:"DELETE",
 						credentials:"include"
@@ -265,8 +265,7 @@ class HomePage extends Component {
 	
 	
 	render(){
-		//console.log("Homepage comments state:")
-		//console.log(this.state.comments);
+		
 		return(
 			<div className="Homepage">
 				<div className="nav-link">

@@ -20,7 +20,7 @@ class CreateComment extends Component {
 
 		if(this.props.loggedIn === true) {
 			try{
-				const createResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/posts/comments/new_comment/" + this.props.post.id,{
+				const createResponse = await fetch(process.env.REACT_APP_SERVER_URL + "/api/v1/comments/new_comment/" + this.props.post.id,{
 					method:"POST",
 					credentials: "include",
 					body: JSON.stringify(this.state),
