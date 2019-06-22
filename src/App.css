@@ -230,6 +230,20 @@ footer {
 		font-size: 10pt;
 	}
 
+	.About div {
+		width: 365px;
+	}
+
+	.About p {
+		width: 360px;
+		flex-wrap: wrap;
+		word-break: break-word;
+	} 
+
+	#dev-pic {
+		float: none;
+	}
+
 	ul {
 		padding-inline-start: 0px;
 	}
