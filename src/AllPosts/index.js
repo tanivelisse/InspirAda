@@ -39,12 +39,12 @@ class AllPosts extends Component {
             	console.log("calling newPostsList list");
             	console.log(onePost);
             	//variable to store term
-            	const filter = e.target.value
+            	const filter = e.target.value.toLowerCase()
             	//variable to store matching post with term 
             	let match = null
             	//search to see if the current post includes the search term 
             	//if it does it will be added to newPostsList
-            	if(onePost.f_name.includes(filter) || onePost.l_name.includes(filter)){
+            	if(onePost.f_name.toLowerCase().includes(filter) || onePost.l_name.toLowerCase().includes(filter)){
             		match = onePost
             	}
 				return match
