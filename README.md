@@ -1,6 +1,6 @@
 # InspirAda
 
-Deployed with Heroku: (https://inpirada.herokuapp.com/)
+Deployed with Heroku: (https://inspirada.herokuapp.com/)
 
 ### GA SEI Capstone Project
 
